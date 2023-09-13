@@ -76,15 +76,15 @@
             <span class="text-white font-semibold text-[22px] "> Our Store</span>
             <img src="https://thehimalayanfarm.in/assets/frontend/img/shape/f.png" class="mt-4" alt="">
             <ul class="text-white font-normal text-[14px] ">
-                <a href=""><li class="mt-8">Fresh</li></a>
-                <a href=""><li class="mt-2">Gourmet</li></a>
-                <a href=""><li class="mt-2">Traditional</li></a>
-                <a href=""><li class="mt-2">Assorted</li></a>
-                <a href=""><li class="mt-2">Natural</li></a>
-                <a href=""><li class="mt-2">Herbal</li></a>
-                <a href=""><li class="mt-2">Wellness</li></a>
-                <a href=""><li class="mt-2">Elixir</li></a>
-                <a href=""><li class="mt-2">All Products</li></a>
+                <a href="{{route('store')}}"><li class="mt-8">Fresh</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Gourmet</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Traditional</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Assorted</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Natural</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Herbal</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Wellness</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">Elixir</li></a>
+                <a href="{{route('store')}}"><li class="mt-2">All Products</li></a>
             </ul>
 
         </div>
@@ -92,13 +92,13 @@
             <span class="text-white font-semibold text-[22px] ">Menu</span>
             <img src="https://thehimalayanfarm.in/assets/frontend/img/shape/f.png" class="mt-4" alt="">
             <ul class="text-white font-normal text-[14px] ">
-                <a href=""><li class="mt-8">Home</li></a>
-                <a href=""><li class="mt-2">Our Story</li></a>
-                <a href=""><li class="mt-2">Our Family</li></a>
-                <a href=""><li class="mt-2">Learn with Thiya</li></a>
-                <a href=""><li class="mt-2">Gifting and Bulk Orders </li></a>
-                <a href=""><li class="mt-2">Contact Us</li></a>
-                <a href=""><li class="mt-2">Career</li></a>
+                <a href="{{route('home')}}"><li class="mt-8">Home</li></a>
+                <a href="{{route('story')}}"><li class="mt-2">Our Story</li></a>
+                <a href="{{route('our-family')}}"><li class="mt-2">Our Family</li></a>
+                <a href="{{route('learnWithThiya')}}"><li class="mt-2">Learn with Thiya</li></a>
+                <a href="{{route('giftings')}}"><li class="mt-2">Gifting and Bulk Orders </li></a>
+                <a href="{{route('contact')}}"><li class="mt-2">Contact Us</li></a>
+                <a href="{{route('contact')}}"><li class="mt-2">Career</li></a>
             </ul>
 
         </div>

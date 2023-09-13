@@ -1,6 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
+
    <div class="w-full px-8 py-1">
        <div class="w-full py-4 bg-[#f7f7f7] flex px-6 border-[1px] border-gray-300 rounded-xl ">
            <span class="font-normal text-[30px]">Order Id: THIYA2301254 | Order Status: <button class="bg-[#008973] text-white p-1 px-2 w-max h-max ml-2 rounded-sm text-sm">Pending</button></span>
@@ -47,7 +48,6 @@
        </div>
    </div>
 
-{{--     payment aleret here--}}
    <div class="w-full px-8 py-1">
        <div class="w-full py-4 bg-[#d4edda] flex flex-col px-6 rounded-sm ">
            <span class="font-normal text-[20px] text-green-800">Payment Success!</span>
@@ -57,9 +57,6 @@
 
        </div>
    </div>
-
-
-
 
    <div class="w-full">
         <div class="w-full px-8 mt-10 flex lg:flex-row md:flex-row flex-col gap-4 ">
@@ -106,8 +103,7 @@
         </div>
     </div>
 
-
-   <div class="w-full">
+   <div class="w-full mb-4">
        <div class="w-full px-8 mt-10  gap-4">
            <div class="w-full">
                <div class="w-full h-max] border-[1px] border-gray-300 rounded-xl my-auto overflow-hidden p-6">
@@ -159,12 +155,5 @@
 
        </div>
    </div>
-
-
-
-
-
-
-
 
 @endsection
