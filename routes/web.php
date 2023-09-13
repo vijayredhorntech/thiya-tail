@@ -116,4 +116,13 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/giftings', function () {
         return view('giftings');
     })->name('giftings');
+    Route::get('/contact', function () {
+        return view('contact');
+    })->name('contact');
+    Route::get('/checkout', function () {
+        return view('checkout');
+    })->name('checkout');
+    Route::get('/orders', function () {
+        return view('orders');
+    })->name('orders');
 });

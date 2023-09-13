@@ -5,8 +5,8 @@
 
 
         <div class="w-full">
-            <div class="w-full flex lg:flex-row md:flex-row sm:flex-col flex-col">
-                  <div class="lg:w-[70%]">
+            <div class="w-full flex lg:flex-row md:flex-row sm:flex-col flex-col gap-2  ">
+                  <div class="lg:w-[70%] px-4">
                       <img class="w-full" src="https://thehimalayanfarm.in/assets/frontend/img/slider/gift_2.webp" alt="">
                   </div>
 
@@ -15,17 +15,37 @@
                                <div class="w-full py-4 bg-[#f7f7f7] flex justify-center">
                                     <span>Buy Gift Card</span>
                                </div>
-
-
                           <div class="w-full p-6">
-                               <div class="flex flex-col">
-                                   <label for="amount" class="text-gray-400 text-md ">Gift Card Amount</label>
+                               <div class="flex flex-col mb-2">
+                                   <label for="amount" class="text-gray-400 text-sm ">Gift Card Amount</label>
                                    <input class="bg-white border-[1px] border-gray-400 rounded-md placeholder:text-gray-400 mt-2" type="number" placeholder="Amount">
                                </div>
+                              <div class="flex flex-col mb-2">
+                                  <label for="amount" class="text-gray-400 text-sm ">Receiver Name</label>
+                                  <input class="bg-white border-[1px] border-gray-400 rounded-md placeholder:text-gray-400 mt-2" type="number" placeholder="Receiver Name">
+                              </div>
+                              <div class="flex flex-col mb-2">
+                                  <label for="amount" class="text-gray-400 text-sm ">Receiver Email</label>
+                                  <input class="bg-white border-[1px] border-gray-400 rounded-md placeholder:text-gray-400 mt-2" type="number" placeholder="Receiver Email">
+                              </div>
+                              <div class="flex flex-col">
+                                  <label for="amount" class="text-gray-400 text-sm ">Message to Receiver</label>
+                                  <textarea class="bg-white border-[1px] border-gray-400 rounded-md placeholder:text-gray-400 mt-2" rows="5" type="number" placeholder="Receiver Email"></textarea>
+                              </div>
+                          </div>
+
+                          <div class="w-full py-4 px-6 bg-[#f7f7f7] flex ">
+                              <button class="bg-[#008973] text-white py-3 px-6">Proceed to Payment</button>
                           </div>
                       </div>
                 </div>
             </div>
+        </div>
+
+
+
+        <div class="w-full mb-4">
+            <img class="h-auto w-full" src="https://thehimalayanfarm.in/assets/frontend/img/slider/gift_3.webp" alt="">
         </div>
 
 
