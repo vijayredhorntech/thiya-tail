@@ -13,7 +13,7 @@
     <div class="flex  justify-between bg-white px-2 py-3 relative">
       <div class="lg:w-[10%] md:lg:w-[30%] sm:w-[30%] w-[30%] flex flex-col" >
           <a href="{{route('home')}}">
-              <img class=" lg:h-[60px] md:h-[60px] sm:h-[50px] h-[40px] my-auto" src="https://thehimalayanfarm.in/assets/frontend/img/logo/logo@2x.png" alt="">
+              <img class=" lg:h-[60px] md:h-[60px] sm:h-[50px] h-[40px] my-auto" src="{{ light_logo() }}" alt="">
           </a>
       </div>
       <div class="lg:w-[70%] lg:flex md:hidden justify-end pr-2  sm:hidden hidden">

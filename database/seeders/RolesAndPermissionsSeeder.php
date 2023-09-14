@@ -15,14 +15,14 @@ class RolesAndPermissionsSeeder extends Seeder
     public function run(): void
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-    
+
 
         // create permissions
         Permission::create(['name' => 'create users']);
         Permission::create(['name' => 'read users']);
         Permission::create(['name' => 'update users']);
         Permission::create(['name' => 'delete users']);
-        
+
         Permission::create(['name' => 'create permissions']);
         Permission::create(['name' => 'read permissions']);
         Permission::create(['name' => 'update permissions']);
@@ -42,14 +42,19 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'read plugins']);
         Permission::create(['name' => 'update plugins']);
         Permission::create(['name' => 'delete plugins']);
-        
+
+        Permission::create(['name' => 'create product']);
+        Permission::create(['name' => 'read product']);
+        Permission::create(['name' => 'update product']);
+        Permission::create(['name' => 'delete product']);
+
         Permission::create(['name' => 'read analytics']);
 
         Permission::create(['name' => 'read reports']);
 
         Permission::create(['name' => 'update settings']);
 
-        
+
         // create roles and assign created permissions
 
         // this can be done as separate statements

@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\TrafficsController;
+use App\Http\Controllers\ProductController;
 use App\Models\Language;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -76,13 +77,22 @@ Route::middleware(['splade'])->group(function () {
             Route::put('/update', [SettingController::class, 'update'])->name('update');
         });
 
-        Route::prefix('plugins')->name('plugins.')->group(function(){
-            Route::get('/',[PluginController::class,'index'])->name('index');
-            Route::get('/install',[PluginController::class,'create'])->name('create');
-            Route::post('/install',[PluginController::class,'store'])->name('store');
-            Route::post('/{plugin}/activate',[PluginController::class,'activate'])->name('activate');
-            Route::post('/{plugin}/deactivate',[PluginController::class,'deactivate'])->name('deactivate');
-            Route::post('/{plugin}/delete',[PluginController::class,'delete'])->name('delete');
+        Route::prefix('plugins')->name('plugins.')->group(function () {
+            Route::get('/', [PluginController::class, 'index'])->name('index');
+            Route::get('/install', [PluginController::class, 'create'])->name('create');
+            Route::post('/install', [PluginController::class, 'store'])->name('store');
+            Route::post('/{plugin}/activate', [PluginController::class, 'activate'])->name('activate');
+            Route::post('/{plugin}/deactivate', [PluginController::class, 'deactivate'])->name('deactivate');
+            Route::post('/{plugin}/delete', [PluginController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('products')->name('products.')->group(function () {
+            Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/create', [ProductController::class, 'create'])->name('create');
+            Route::post('/store', [ProductController::class, 'store'])->name('store');
+            Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
+            Route::put('/{product}/update', [ProductController::class, 'update'])->name('update');
+            Route::post('/{product}/delete', [ProductController::class, 'delete'])->name('delete');
         });
     });
 
@@ -128,12 +138,12 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/orders', function () {
         return view('orders');
     })->name('orders');
-    Route::get('/login', function () {
-        return view('login');
-    })->name('login');
-    Route::get('/signup', function () {
-        return view('signup');
-    })->name('signup');
+//    Route::get('/login', function () {
+//        return view('login');
+//    })->name('login');
+//    Route::get('/signup', function () {
+//        return view('signup');
+//    })->name('signup');
     Route::get('/forgetpassword', function () {
         return view('forgetpassword');
     })->name('forgetpassword');

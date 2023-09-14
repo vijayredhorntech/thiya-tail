@@ -41,7 +41,7 @@ class SettingsSeeder extends Seeder
             ],
             [
                 'key' => 'timezone',
-                'value' => 'UTC',
+                'value' => 'Asia/Kolkata',
             ],
             [
                 'key' => 'date_format',

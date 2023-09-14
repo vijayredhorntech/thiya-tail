@@ -6,7 +6,7 @@
                 <a href="" class="mx-auto">
                     <img class="w-20" src="https://thehimalayanfarm.in/assets/frontend/img/brand/moonshine.png" alt="">
                 </a>
-                <span class="mx-auto text-white text-[20px] font-bold">Brands Server</span>
+                <span class="mx-auto text-white text-[20px] font-bold">Brands Served</span>
             </div>
         </div>
         <div class="w-full flex flex-col">
@@ -60,7 +60,7 @@
     <div class="w-full flex flex-wrap">
         <div class=" lg:w-[30%] md:w-[30%] sm:w-[50%] w-[100%] p-4">
             <div class="w-full ">
-                <img class="w-[85%]" src="https://thehimalayanfarm.in/assets/frontend/img/logo/logo-white2@2x.png" alt="">
+                <img class="w-[85%]" src="{{ dark_logo() }}" alt="{{ getSetting('website_name') }}" loading="lazy">
             </div>
             <p class="text-[14px] text-white font-semibold mt-8">The Gift of God and an acronym to The
                 Himalayan Farm.
