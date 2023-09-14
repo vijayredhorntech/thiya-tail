@@ -41,7 +41,7 @@
 
       <div class="lg:w-[20%] md:w-[70%] sm:w-[60%] w-[70%] flex pl-2 lg:justify-center justify-end" >
           <ul class="flex gap-[20px] my-auto text-[15px] font-semibold text-[#596369]">
-                <li class="m-auto"><a href="{{route('home')}}"><i class="fa-regular fa-user"></i></a></li>
+                <li class="m-auto"><a href="{{route('login')}}"><i class="fa-regular fa-user"></i></a></li>
                 <li class="m-auto"><a href="{{route('home')}}"><i class="fa fa-search"></i></a></li>
                 <li class="m-auto"><a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a></li>
                 <li class="m-auto"><a href="{{route('home')}}"><i class="fa-regular fa-heart"></i></a></li>
