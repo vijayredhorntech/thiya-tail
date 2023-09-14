@@ -17,15 +17,15 @@ class SettingsSeeder extends Seeder
             # General
             [
                 'key' => 'website_name',
-                'value' => 'SpladePanel',
+                'value' => 'THIYA',
             ],
             [
                 'key' => 'website_url',
-                'value' => 'https://name.com',
+                'value' => 'https://thehimalayanfarm.in',
             ],
             [
                 'key' => 'website_email_address',
-                'value' => 'support@spladepanel.com',
+                'value' => 'support@thehimalayanfarm.in',
             ],
             [
                 'key' => 'user_registration',
@@ -51,11 +51,11 @@ class SettingsSeeder extends Seeder
             # SEO Configuration
             [
                 'key' => 'seo_title',
-                'value' => 'SpladePanel',
+                'value' => 'THIYA',
             ],
             [
                 'key' => 'seo_author',
-                'value' => 'Abdelmjid Saber',
+                'value' => 'Vineet Chauhan',
             ],
             [
                 'key' => 'seo_keywords',
@@ -67,7 +67,7 @@ class SettingsSeeder extends Seeder
             ],
             [
                 'key' => 'social_title',
-                'value' => 'SpladePanel',
+                'value' => 'THIYA',
             ],
             [
                 'key' => 'social_description',

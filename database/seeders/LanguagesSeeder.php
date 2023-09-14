@@ -20,14 +20,7 @@ class LanguagesSeeder extends Seeder
                 'dir' => 'ltr',
                 'icon' => 'us',
                 'status' => 'Active',
-            ],
-            [
-                'name' => 'العربية',
-                'code' => 'ar',
-                'dir' => 'rtl',
-                'icon' => 'eg',
-                'status' => 'Active',
-            ],
+            ]
         ];
 
         foreach ($languages as $language) {

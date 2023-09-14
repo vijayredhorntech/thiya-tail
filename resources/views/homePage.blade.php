@@ -1,5 +1,6 @@
-@extends('layouts.main')
+@seoTitle(__('THIYA |  HOME'))
 
+@extends('layouts.main')
 @section('content')
     {{--    banner--}}
     <div id="banner"
