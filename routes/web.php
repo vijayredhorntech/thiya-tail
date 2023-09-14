@@ -128,4 +128,13 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/orders', function () {
         return view('orders');
     })->name('orders');
+    Route::get('/login', function () {
+        return view('login');
+    })->name('login');
+    Route::get('/signup', function () {
+        return view('signup');
+    })->name('signup');
+    Route::get('/forgetpassword', function () {
+        return view('forgetpassword');
+    })->name('forgetpassword');
 });
