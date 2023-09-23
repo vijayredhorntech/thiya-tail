@@ -45,9 +45,7 @@ class Products extends AbstractTable
             $query->where(function ($query) use ($value) {
                 Collection::wrap($value)->each(function ($value) use ($query) {
                     $query
-                        ->orWhere('name', 'LIKE', "%{$value}%")
-                        ->orWhere('username', 'LIKE', "%{$value}%")
-                        ->orWhere('email', 'LIKE', "%{$value}%");
+                        ->orWhere('name', 'LIKE', "%{$value}%");
                 });
             });
         });
@@ -69,18 +67,21 @@ class Products extends AbstractTable
     public function configure(SpladeTable $table)
     {
         $table
-            ->withGlobalSearch(columns: ['id', 'name', 'username', 'email'])
+            ->withGlobalSearch(columns: ['name'])
             ->column('name', __('main.name'), sortable: true, searchable: true)
+            ->column('category', __('Category'), sortable: true)
+            ->column('featured', __('Featured'), sortable: true)
+            ->column('status', __('Status'), sortable: true)
             ->column(
                 'created_at',
-                __('main.joined'),
+                __('Added'),
                 as: fn ($created_at) => Carbon::parse($created_at)->format(getSetting('date_format')),
                 sortable: true
             )
             ->column('actions', __('main.action'))
             ->selectFilter(key: 'status', label: __('main.status'), options: [
-                'Active' => __('main.active'),
-                'Inactive' => __('Inactive'),
+                1 => __('main.active'),
+                0 => __('Inactive'),
             ]);
     }
 }

@@ -76,15 +76,15 @@
             <span class="text-white font-semibold text-[22px] "> Our Store</span>
             <img src="https://thehimalayanfarm.in/assets/frontend/img/shape/f.png" class="mt-4" alt="">
             <ul class="text-white font-normal text-[14px] ">
-                <a href="{{route('store')}}"><li class="mt-8">Fresh</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Gourmet</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Traditional</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Assorted</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Natural</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Herbal</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Wellness</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">Elixir</li></a>
-                <a href="{{route('store')}}"><li class="mt-2">All Products</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-8">Fresh</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Gourmet</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Traditional</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Assorted</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Natural</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Herbal</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Wellness</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">Elixir</li></a>
+                <a href="{{route('store.home')}}"><li class="mt-2">All Products</li></a>
             </ul>
 
         </div>

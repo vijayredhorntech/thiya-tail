@@ -1,8 +1,6 @@
 @seoTitle(__('THIYA |  HOME'))
 
-@extends('layouts.main')
-@section('content')
-    {{--    banner--}}
+<x-frontend-layout>
     <div id="banner"
          class="swiffy-slider slider-indicators-round slider-indicators-dark slider-nav-dark slider-nav-visible slider-nav-arrow  slider-nav-autoplay slider-nav-touch slider-nav-autopause">
         <ul class="slider-container">
@@ -1018,4 +1016,4 @@
             </div>
         </div>
     </div>
-@endsection
+</x-frontend-layout>

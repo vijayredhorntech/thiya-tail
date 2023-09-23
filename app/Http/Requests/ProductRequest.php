@@ -11,12 +11,13 @@ class ProductRequest extends FormRequest
         return [
             'name' => ['required'],
             'featured' => ['required'],
-            'active' => ['required'],
+            'status' => ['required'],
             'description' => ['required'],
             'mobile_description' => ['required'],
             'summary' => ['required'],
-            'summary_image' => ['required'],
-            'tagged_products' => ['json'],
+            'tagged_products' => ['nullable'],
+            'summary_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
+            'images.*' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:1024'],
         ];
     }
 }

@@ -48,6 +48,11 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'update product']);
         Permission::create(['name' => 'delete product']);
 
+        Permission::create(['name' => 'create homeSlider']);
+        Permission::create(['name' => 'read homeSlider']);
+        Permission::create(['name' => 'update homeSlider']);
+        Permission::create(['name' => 'delete homeSlider']);
+
         Permission::create(['name' => 'read analytics']);
 
         Permission::create(['name' => 'read reports']);

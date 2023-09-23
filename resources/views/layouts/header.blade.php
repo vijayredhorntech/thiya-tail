@@ -20,7 +20,7 @@
             <ul class="flex gap-[30px] my-auto text-[20px] font-semibold text-[#596369]">
                 <li><a href="{{route('home')}}" class="hover:text-[#018472]">Home</a></li>
                 <li><a href="{{route('story')}}" class="hover:text-[#018472]">Our Story</a></li>
-                <li><a href="{{route('store')}}" class="hover:text-[#018472]">Our Store</a></li>
+                <li><a href="{{route('store.home')}}" class="hover:text-[#018472]">Our Store</a></li>
                 <li><a href="{{route('our-family')}}" class="hover:text-[#018472]">Our Family</a></li>
                 <li><a href="{{route('learnWithThiya')}}" class="hover:text-[#018472]">Learn With Thiya</a></li>
                 <li><a href="{{route('giftings')}}" class="hover:text-[#018472]">Giftings</a></li>
@@ -32,7 +32,7 @@
             <ul class="flex  flex-col bg-black  gap-[30px] my-auto px-6 py-4 text-[20px] font-semibold text-white rounded-md">
                 <li><a href="{{route('home')}}" class="hover:text-[#018472]">Home</a></li>
                 <li><a href="{{route('story')}}" class="hover:text-[#018472]">Our Story</a></li>
-                <li><a href="{{route('store')}}" class="hover:text-[#018472]">Our Store</a></li>
+                <li><a href="{{route('store.home')}}" class="hover:text-[#018472]">Our Store</a></li>
                 <li><a href="{{route('our-family')}}" class="hover:text-[#018472]">Our Family</a></li>
                 <li><a href="{{route('learnWithThiya')}}" class="hover:text-[#018472]">Learn With Thiya</a></li>
                 <li><a href="{{route('giftings')}}" class="hover:text-[#018472]">Giftings</a></li>
@@ -46,7 +46,7 @@
                 <li class="m-auto"><a href="{{route('cart')}}"><i class="fa fa-shopping-cart"></i></a></li>
                 <li class="m-auto"><a href="{{route('home')}}"><i class="fa-regular fa-heart"></i></a></li>
                 <li class="m-auto lg:block hidden"><a href="{{route('home')}}"><button class="bg-[#008973] text-white h-[40px] w-[40px] rounded-full text-[15px] shadow-lg shadow-gray-500/50 ml-2"><i class="fa-solid fa-water"></i></button></a></li>
-                <li class="m-auto lg:hidden md:block block"><button id="menuToggle" onclick="openMenu()" class="bg-[#008973] text-white h-[40px] w-[40px] rounded-full text-[15px] shadow-lg shadow-gray-500/50 ml-2"><i class="fa-solid fa-bars"></i></button></li>
+                <li class="m-auto lg:hidden md:block block"><button id="menuToggle" onclick=" mobileMenu.classList.toggle('h-0');"  class="bg-[#008973] text-white h-[40px] w-[40px] rounded-full text-[15px] shadow-lg shadow-gray-500/50 ml-2"><i class="fa-solid fa-bars"></i></button></li>
           </ul>
 
       </div>

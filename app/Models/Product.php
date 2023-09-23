@@ -22,11 +22,27 @@ class Product extends Model
         'slug',
         'name',
         'featured',
-        'active',
+        'status',
         'description',
         'mobile_description',
         'summary',
         'summary_image',
         'tagged_products',
+        'category_id'
     ];
+
+    public function media()
+    {
+        return $this->hasMany(ProductMedia::class);
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function variations()
+    {
+        return $this->hasMany(ProductVariation::class);
+    }
 }

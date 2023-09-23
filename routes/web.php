@@ -8,7 +8,12 @@ use App\Http\Controllers\Dashboard\RoleController;
 use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\TrafficsController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\HomeSliderController;
+use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductVariationController;
+use App\Http\Controllers\StoreController;
 use App\Models\Language;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -52,13 +57,18 @@ Route::middleware(['splade'])->group(function () {
         Route::post('/register', [RegisteredUserController::class, 'store']);
     });
 
-    Route::get('/', function () {
-        return view('welcome', [
-            'canLogin' => Route::has('login'),
-            'canRegister' => Route::has('register'),
-            'laravelVersion' => Application::VERSION,
-            'phpVersion' => PHP_VERSION,
-        ]);
+//    Route::get('/', function () {
+//        return view('welcome', [
+//            'canLogin' => Route::has('login'),
+//            'canRegister' => Route::has('register'),
+//            'laravelVersion' => Application::VERSION,
+//            'phpVersion' => PHP_VERSION,
+//        ]);
+//    });
+
+    Route::prefix('store')->name('store.')->group(function () {
+        Route::get('/{category?}', [StoreController::class, 'index'])->name('home');
+        Route::get('/product/{product:slug}/{variation:slug?}', [StoreController::class, 'product'])->name('product');
     });
 
     Route::prefix('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->name('dashboard.')->group(function () {
@@ -88,12 +98,36 @@ Route::middleware(['splade'])->group(function () {
 
         Route::prefix('products')->name('products.')->group(function () {
             Route::get('/', [ProductController::class, 'index'])->name('index');
+            Route::get('/show/{product:slug}', [ProductController::class, 'show'])->name('show');
             Route::get('/create', [ProductController::class, 'create'])->name('create');
             Route::post('/store', [ProductController::class, 'store'])->name('store');
-            Route::get('/{product}/edit', [ProductController::class, 'edit'])->name('edit');
-            Route::put('/{product}/update', [ProductController::class, 'update'])->name('update');
-            Route::post('/{product}/delete', [ProductController::class, 'delete'])->name('delete');
+            Route::get('/{product:slug}/edit', [ProductController::class, 'edit'])->name('edit');
+            Route::put('/{product:slug}/update', [ProductController::class, 'update'])->name('update');
+            Route::post('/{product:slug}/delete', [ProductController::class, 'delete'])->name('delete');
+            Route::prefix('variation')->name('product.variation.')->group(function () {
+                Route::get('/{product:slug}/create', [ProductVariationController::class, 'create'])->name('create');
+                Route::post('/{product:slug}/store', [ProductVariationController::class, 'store'])->name('store');
+                Route::get('/{product:slug}/edit/{variation}', [ProductVariationController::class, 'edit'])->name('edit');
+                Route::put('/{product:slug}/update/{variation}', [ProductVariationController::class, 'update'])->name('update');
+                Route::post('/{product:slug}/delete/{variation}', [ProductVariationController::class, 'delete'])->name('delete');
+            });
         });
+
+        Route::prefix('product-categories')->name('productCategories.')->group(function () {
+            Route::get('/', [ProductCategoryController::class, 'index'])->name('index');
+            Route::get('/create', [ProductCategoryController::class, 'create'])->name('create');
+            Route::put('/store', [ProductCategoryController::class, 'store'])->name('store');
+            Route::get('/{productCategory}/edit', [ProductCategoryController::class, 'edit'])->name('edit');
+            Route::put('/{productCategory}/update', [ProductCategoryController::class, 'update'])->name('update');
+            Route::get('/{productCategory}/delete', [ProductCategoryController::class, 'delete'])->name('delete');
+        });
+
+        Route::prefix('home-slider')->name('homeSlider.')->group(function () {
+            Route::get('/', [HomeSliderController::class, 'index'])->name('index')->middleware('permission:read homeSlider');
+            Route::post('/store', [HomeSliderController::class, 'store'])->name('store')->middleware('permission:create homeSlider');
+            Route::get('/{slider}/delete', [HomeSliderController::class, 'delete'])->name('delete')->middleware('permission:delete homeSlider');
+        });
+
     });
 
 
@@ -102,9 +136,7 @@ Route::middleware(['splade'])->group(function () {
 //    })->where('any', '.*');
 
     // home, cart, contact us, components
-    Route::get('/home', function () {
-        return view('homePage');
-    })->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/cart', function () {
         return view('cart');
     })->name('cart');
@@ -114,9 +146,7 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/story', function () {
         return view('story');
     })->name('story');
-    Route::get('/store', function () {
-        return view('store');
-    })->name('store');
+
     Route::get('/our-family', function () {
         return view('ourFamily');
     })->name('our-family');
@@ -138,12 +168,12 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/orders', function () {
         return view('orders');
     })->name('orders');
-//    Route::get('/login', function () {
-//        return view('login');
-//    })->name('login');
-//    Route::get('/signup', function () {
-//        return view('signup');
-//    })->name('signup');
+    Route::get('/login', function () {
+        return view('login');
+    })->name('login');
+    Route::get('/signup', function () {
+        return view('signup');
+    })->name('signup');
     Route::get('/forgetpassword', function () {
         return view('forgetpassword');
     })->name('forgetpassword');

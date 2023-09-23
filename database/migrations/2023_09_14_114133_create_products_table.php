@@ -9,6 +9,7 @@ return new class extends Migration {
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('category_id')->constrained()->cascadeOnDelete();
             $table->string('slug');
             $table->string('name');
             $table->boolean('featured');
@@ -16,8 +17,8 @@ return new class extends Migration {
             $table->longText('description');
             $table->longText('mobile_description');
             $table->longText('summary');
-            $table->string('summary_image');
-            $table->json('tagged_products');
+            $table->string('summary_image')->nullable();
+            $table->json('tagged_products')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -28,8 +28,8 @@
     </div>
 
     <x-section-content>
-
-        <x-splade-form :action="route('dashboard.products.store')" method="POST" class="space-y-4">
+    <x-splade-modal>
+        <x-splade-form :action="$formMeta['action']" :default="$defaults ?? []" :method="$formMeta['method']" class="space-y-4" enctype="multipart/form-data">
             {{--            <h3 class="text-xl font-medium text-gray-900 dark:text-white">--}}
             {{--                Create New Product--}}
             {{--            </h3>--}}
@@ -45,10 +45,10 @@
                         0 => __('Inactive'),
                     ];
                 @endphp
-                <x-splade-select class="w-1/2 p-2" name="featured" label="Featured" :options="$featured_options" placeholder="Featured"
+                <x-splade-select class="w-1/2 p-2" name="featured" label="Featured" :options="$featured_options"
+                                 placeholder="Featured"
                                  choices required/>
 
-                {{--                            <x-splade-textarea v-model="form.bio" name="bio" :label="__('main.bio')" autocomplete="bio" autosize />--}}
                 @php
                     $status_options = [
                         1 => __('Active'),
@@ -58,8 +58,32 @@
                 <x-splade-select class="w-1/2 p-2" name="status" :label="__('main.status')" :options="$status_options"
                                  placeholder="Status" choices required/>
             </div>
-            <x-splade-submit :label="__('main.submit')"/>
+
+            <x-splade-select name="category" :label="__('Category')" choices
+                             :options="\App\Models\Category::pluck('name', 'id')"
+                             placeholder="Product Category" required/>
+
+            @php
+                $products =  \App\Models\Product::all();
+            @endphp
+            <x-splade-select name="tagged_products" :label="__('Frequently Bought Together')"
+                             :options="$products" option-label="name" option-value="id"
+                             placeholder="Product Category" choices multiple/>
+
+            <x-splade-textarea  name="description" :label="__('Description')"  placeholder="Description" autosize required/>
+
+            <x-splade-textarea  name="mobile_description" :label="__('Mobile Description')"  placeholder="Mobile Description" autosize required/>
+
+            <x-splade-textarea  name="summary" :label="__('Short Description')"  placeholder="Short Description" autosize required/>
+
+            <x-splade-file name="summary_image" :label="__('Short Description Image')" placeholder="Short Description Image" filepond preview max-size="1MB" :accept="['image/png', 'image/jpeg']"/>
+
+            <x-splade-file name="images[]" :label="__('Images')" placeholder="Product Images" multiple filepond preview  max-size="1MB" :accept="['image/png', 'image/jpeg']" required/>
+
+
+            <x-splade-submit :label="__($formMeta['title'])"/>
         </x-splade-form>
+    </x-splade-modal>
     </x-section-content>
 
 </x-dashboard-layout>
