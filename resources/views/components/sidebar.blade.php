@@ -17,18 +17,23 @@
 
 
     <Link href="{{ route('dashboard.products.index') }}" class="{{ request()->routeIs('dashboard.products.index') ? 'bg-indigo-50 dark:bg-indigo-400 text-gray-700 dark:text-white font-semibold' : '' }} text-sm py-3 my-0 mx-2 flex items-center whitespace-nowrap px-4 font-medium text-gray-500 dark:text-white hover:bg-indigo-50 dark:hover:bg-indigo-400 rounded-lg shadow-none transition-colors ease-in-out">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-boxes-packing"></i>
                 <span class="mx-2 text-sm">Products</span>
             </Link>
 
+    <Link href="{{ route('dashboard.review.index') }}" class="{{ request()->routeIs('dashboard.review.index') ? 'bg-indigo-50 dark:bg-indigo-400 text-gray-700 dark:text-white font-semibold' : '' }} text-sm py-3 my-0 mx-2 flex items-center whitespace-nowrap px-4 font-medium text-gray-500 dark:text-white hover:bg-indigo-50 dark:hover:bg-indigo-400 rounded-lg shadow-none transition-colors ease-in-out">
+                <i class="fa-solid fa-message"></i>
+                <span class="mx-2 text-sm">Reviews</span>
+            </Link>
+
     <Link href="{{ route('dashboard.productCategories.index') }}" class="{{ request()->routeIs('dashboard.productCategories.index') ? 'bg-indigo-50 dark:bg-indigo-400 text-gray-700 dark:text-white font-semibold' : '' }} text-sm py-3 my-0 mx-2 flex items-center whitespace-nowrap px-4 font-medium text-gray-500 dark:text-white hover:bg-indigo-50 dark:hover:bg-indigo-400 rounded-lg shadow-none transition-colors ease-in-out">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-list-check"></i>
                 <span class="mx-2 text-sm">Product Categories</span>
             </Link>
 
 
     <Link href="{{ route('dashboard.homeSlider.index') }}" class="{{ request()->routeIs('dashboard.homeSlider.index') ? 'bg-indigo-50 dark:bg-indigo-400 text-gray-700 dark:text-white font-semibold' : '' }} text-sm py-3 my-0 mx-2 flex items-center whitespace-nowrap px-4 font-medium text-gray-500 dark:text-white hover:bg-indigo-50 dark:hover:bg-indigo-400 rounded-lg shadow-none transition-colors ease-in-out">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-sliders"></i>
                 <span class="mx-2 text-sm">Home Slider</span>
             </Link>
 

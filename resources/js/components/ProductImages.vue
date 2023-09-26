@@ -45,27 +45,33 @@ export default {
         },
         selectedVariation: {
             type: Number,
-            required: false, // Allow the prop to be optional
-            default: null, // Set a default value of null
+            required: false,
+            default: null,
         },
     },
     setup(props) {
-        const currentImage = ref(props.images[0].url);
+        const firstImageWithSelectedVariation = props.images.find(
+            (image) => parseInt(image.variationId) === parseInt(props.selectedVariation)
+        );
+
+        const currentImage = ref(
+            firstImageWithSelectedVariation
+                ? firstImageWithSelectedVariation.url
+                : props.images[0].url
+        );
+
+        const selectedVariationId = ref(
+            firstImageWithSelectedVariation
+                ? firstImageWithSelectedVariation.variationId
+                : props.images[0].variationId
+        );
+
         const isVideo = ref(false);
-        const selectedVariationId = ref(props.images[0].variationId);
 
         onMounted(() => {
             if (currentImage.value.includes(".mp4")) {
                 isVideo.value = true;
             }
-            const foundImage = props.images.find(
-                (image) => image.variationId === props.selectedVariation
-            );
-            if (foundImage) {
-                currentImage.value = foundImage.url;
-                selectedVariationId.value = foundImage.variationId;
-            }
-
         });
 
         const changeImage = (image, variationId) => {
@@ -103,8 +109,9 @@ export default {
 };
 </script>
 
+
 <style>
-.selected-thumbnail {
-    border: 2px solid #3490dc;
-}
+/*.selected-thumbnail {*/
+/*    border: 2px solid #3490dc;*/
+/*}*/
 </style>

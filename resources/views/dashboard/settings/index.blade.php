@@ -49,6 +49,9 @@
                 <x-splade-input v-model="form.website_url" type="url" name="website_url" :label="__('main.website_url')" required />
                 {{-- Website Email Address --}}
                 <x-splade-input v-model="form.website_email_address" name="website_email_address" :label="__('main.website_email_address')" required />
+{{--                Website Welcome Message--}}
+{{--                <x-splade-input v-model="form.website_welcome_message" name="website_welcome_message" :label="__('main.website_email_address')" required />--}}
+
                 {{-- User Registration --}}
                 <x-splade-checkbox v-model="form.user_registration" name="user_registration" value="1" false-value="0"  label="{{ __('main.user_registration') }}" />
                 {{-- New User Default Role --}}
@@ -64,7 +67,7 @@
                     <option value="Y-m-d" {{ getSetting('date_format') == 'Y-m-d' ? 'selected' : ''  }}>{{ date("Y-m-d") }}</option>
                     <option value="m/d/Y" {{ getSetting('date_format') == 'm/d/Y' ? 'selected' : ''  }}>{{ date("m/d/Y") }}</option>
                     <option value="d/m/Y" {{ getSetting('date_format') == 'd/m/Y' ? 'selected' : ''  }}>{{ date("d/m/Y") }}</option>
-                    <option value="Y/m/d" {{ getSetting('date_format') == 'Y/m/d' ? 'selected' : ''  }}>{{ date("Y/m/d") }}</option>                    
+                    <option value="Y/m/d" {{ getSetting('date_format') == 'Y/m/d' ? 'selected' : ''  }}>{{ date("Y/m/d") }}</option>
                 </x-splade-select>
                 {{-- Update Button --}}
 
@@ -95,7 +98,7 @@
                 <x-splade-file name="dark_logo" :label="__('main.dark_logo')" filepond preview accept="image/png,jpg,jpeg" max-size="5MB" />
                 {{-- Favicon --}}
                 <x-splade-file name="favicon" :label="__('main.favicon')" filepond preview accept="image/png,jpg,jpeg" max-size="5MB" :min-resolution="512 * 512" :max-resolution="512 * 512" />
-                
+
                 {{-- SMTP --}}
                 <h2 class="text-2xl font-bold tracking-tight text-gray-950 dark:text-white sm:text-3xl">@lang('main.smtp')</h2>
 

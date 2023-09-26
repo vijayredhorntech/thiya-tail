@@ -38,4 +38,12 @@ class HomeSliderController extends Controller
         return redirect()->route('dashboard.homeSlider.index');
     }
 
+    public function toggle(HomeSlider $slider, $property)
+    {
+        $slider->$property = !$slider->$property;
+        $slider->save();
+        Toast::success('Slider Updated Successfully');
+        return redirect()->route('dashboard.homeSlider.index');
+    }
+
 }

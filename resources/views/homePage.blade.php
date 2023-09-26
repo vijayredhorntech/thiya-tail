@@ -1,31 +1,8 @@
 @seoTitle(__('THIYA |  HOME'))
 
 <x-frontend-layout>
-    <div id="banner"
-         class="swiffy-slider slider-indicators-round slider-indicators-dark slider-nav-dark slider-nav-visible slider-nav-arrow  slider-nav-autoplay slider-nav-touch slider-nav-autopause">
-        <ul class="slider-container">
-            <li><img src="https://thehimalayanfarm.in/storage/319/conversions/1-optimized.webp"
-                     class="w-full lg:h-[70vh] md:h-[70vh] sm:h-[50vh] h-[40vh]"></li>
-            <li><img src="https://thehimalayanfarm.in/storage/318/conversions/Plantable-Seed-Rakhi-optimized.webp"
-                     class="w-full lg:h-[70vh] md:h-[70vh] sm:h-[50vh] h-[40vh]"></li>
-        </ul>
-
-        <button type="button" class="slider-nav"></button>
-        <button type="button" class="slider-nav slider-nav-next"></button>
-
-        <div class="slider-indicators">
-            <button class="active"></button>
-            <button></button>
-        </div>
-    </div>
-
-    {{--    typewriter text--}}
-    <div class="lg:w-[80vw] md:w-[90vw] w-[100vw] lg:px-6 px-4 py-4 m-auto">
-        <p class="lg:text-[45px] md:text-[40px] sm:text-30px] text-[25px] text-[#018472] font-bold"
-           id="typewriter-text">
-
-        </p>
-    </div>
+    <x-home-slider/>
+    <WelcomeMessage></WelcomeMessage>
 
     {{--    main heading--}}
     <div class=" w-full relative">

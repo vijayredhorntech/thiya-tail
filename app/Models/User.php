@@ -76,7 +76,7 @@ class User extends Authenticatable
         return $this->hasMany(ReportError::class);
     }
 
-    public function carts()
+    public function cart()
     {
         return $this->HasOne(Cart::class);
     }

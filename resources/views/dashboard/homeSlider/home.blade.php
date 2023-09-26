@@ -72,6 +72,7 @@
             </x-splade-cell>
             <x-splade-cell text_overlay as="$slider">
                 {{ $slider->text_overlay ? $slider->text : 'No Overlay' }}
+
             </x-splade-cell>
             <x-splade-cell button as="$slider">
                 {{ $slider->button ? $slider->button_text . ':  Redirect To - '. $slider->button_link : 'No Button' }}
@@ -80,6 +81,7 @@
                 @can('delete homeSlider')
                     <Link class="bg-red-500 rounded-md p-1 text-white" href="{{ route('dashboard.homeSlider.delete',['slider'=>$slider]) }}" confirm="Are you sure you want to delete this Slider?">Delete</Link>
                 @endcan
+
             </x-splade-cell>
         </x-splade-table>
     </x-section-content>

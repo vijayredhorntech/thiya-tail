@@ -5,21 +5,42 @@
             class="w-full flex lg:flex-nowrap md:flex-nowrap sm:flex-nowrap flex-wrap lg:flex-row  justify-between border-[1px] border-gray-300 px-4 rounded-lg">
             @foreach($categories as $category)
 
-            <div class="lg:w-[10%] md:w-[10%] sm:w-[10%] w-[40%] flex justify-center  py-3">
-                <a href="">
-                    <img class=" w-full "
-                         src="{{ asset($category->image) }}" alt="{{ $category->name }}">
-                </a>
+            <div class="lg:w-[10%] md:w-[10%] sm:w-[10%] w-[40%] flex justify-center  py-3 ">
+                <Link href="{{ route('store.home', ['category'=>$category]) }}">
+                    <img
+                        class="w-full transform transition-transform hover:scale-95"
+                        src="{{ asset($category->image) }}"
+                        alt="{{ $category->name }}"
+                        loading="lazy"
+                    >
+                </Link>
+
+            </div>
+            @endforeach
+                <div class="lg:w-[10%] md:w-[10%] sm:w-[10%] w-[40%] flex justify-center  py-3 ">
+                <Link href="{{ route('store.home') }}">
+                    <img
+                        class="w-full transform transition-transform hover:scale-95"
+                        src="https://barmaler.sirv.com/thiya/category_0.jpg"
+                        alt="All Categories"
+                        loading="lazy"
+                    >
+                </Link>
             </div>
 
-            @endforeach
         </div>
     </div>
 
 
     <div class="w-full px-4 mt-4">
         <div class="w-full flex justify-center border-[1px] border-gray-300 p-4 rounded-lg">
-            <h1 style="font-size: 25px">Showing All Products</h1>
+            <h1 style="font-size: 25px">
+                @if($activeCategory)
+                     {{ $activeCategory->name }}
+                @else
+                Showing All Products
+                @endif
+            </h1>
         </div>
     </div>
 

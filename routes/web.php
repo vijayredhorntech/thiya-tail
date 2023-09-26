@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\LanguageController;
 use App\Http\Controllers\Dashboard\PermissionController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductVariationController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StoreController;
 use App\Models\Language;
 use Illuminate\Foundation\Application;
@@ -67,8 +69,17 @@ Route::middleware(['splade'])->group(function () {
 //    });
 
     Route::prefix('store')->name('store.')->group(function () {
-        Route::get('/{category?}', [StoreController::class, 'index'])->name('home');
+        Route::get('/{category:slug?}', [StoreController::class, 'index'])->name('home');
         Route::get('/product/{product:slug}/{variation:slug?}', [StoreController::class, 'product'])->name('product');
+        Route::prefix('product')->name('product.')->group(function () {
+            Route::post('/{product:slug}/review', [ReviewController::class, 'store'])->name('create-review');
+        });
+        Route::prefix('cart')->middleware(['auth:sanctum'])->name('cart.')->group(function () {
+            Route::get('/', [CartController::class, 'index'])->name('index');
+            Route::post('/add/{product:slug}/{variation:slug}', [CartController::class, 'store'])->name('add');
+            Route::post('/update', [CartController::class, 'update'])->name('update');
+            Route::post('/remove', [CartController::class, 'remove'])->name('remove');
+        });
     });
 
     Route::prefix('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->name('dashboard.')->group(function () {
@@ -81,6 +92,11 @@ Route::middleware(['splade'])->group(function () {
         Route::get('traffics/logs', [TrafficsController::class, 'logs'])->name('traffics.logs');
         Route::get('error-reports', [TrafficsController::class, 'error_reports'])->name('traffics.error-reports');
         Route::get('error-reports/{report}', [TrafficsController::class, 'error_report'])->name('traffics.error-report');
+
+        Route::prefix('review')->name('review.')->group(function () {
+            Route::get('/', [ReviewController::class, 'index'])->name('index');
+            Route::get('/{review}/toggle', [ReviewController::class, 'toggle'])->name('toggle-review');
+        });
 
         Route::prefix('settings')->name('settings.')->group(function () {
             Route::get('/', [SettingController::class, 'index'])->name('index');
@@ -125,6 +141,7 @@ Route::middleware(['splade'])->group(function () {
         Route::prefix('home-slider')->name('homeSlider.')->group(function () {
             Route::get('/', [HomeSliderController::class, 'index'])->name('index')->middleware('permission:read homeSlider');
             Route::post('/store', [HomeSliderController::class, 'store'])->name('store')->middleware('permission:create homeSlider');
+            Route::get('/{slider}/toggle/{property}', [HomeSliderController::class, 'toggle'])->name('edit')->middleware('permission:update homeSlider');
             Route::get('/{slider}/delete', [HomeSliderController::class, 'delete'])->name('delete')->middleware('permission:delete homeSlider');
         });
 

@@ -68,11 +68,11 @@
             @endphp
             <x-splade-select name="tagged_products" :label="__('Frequently Bought Together')"
                              :options="$products" option-label="name" option-value="id"
-                             placeholder="Product Category" choices multiple/>
+                             placeholder="Frequently Bought Together" choices multiple/>
 
-            <x-splade-textarea  name="description" :label="__('Description')"  placeholder="Description" autosize required/>
+            <x-splade-wysiwyg name="description" :label="__('Description')"  placeholder="Description" jodit="{ showXPathInStatusbar: true }" required/>
+            <x-splade-wysiwyg name="mobile_description" :label="__('Mobile Description')" placeholder="Mobile Description" jodit="{ showXPathInStatusbar: true }" required/>
 
-            <x-splade-textarea  name="mobile_description" :label="__('Mobile Description')"  placeholder="Mobile Description" autosize required/>
 
             <x-splade-textarea  name="summary" :label="__('Short Description')"  placeholder="Short Description" autosize required/>
 

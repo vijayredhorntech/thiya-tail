@@ -3,22 +3,11 @@
     <div class="w-full mt-4">
         <div class="w-full flex lg:flex-row md:flex-row  flex-col gap-2">
             <div class="lg:w-[50%]  gap-4 p-4 lg:flex md:flex hidden ">
-                 <Product-images :images="@js($images)" selectedVariation="{{ $variation->id }}"></Product-images>
+                <Product-images :images="@js($images)" selectedVariation="{{ $variation->id }}"></Product-images>
 
             </div>
             <div class="lg:w-[50%] flex gap-4 p-4 lg:hidden md:hidden block ">
-                <div class="swiffy-slider">
-                    <ul class="slider-container">
-                        <li><img src="https://thehimalayanfarm.in/storage/314/conversions/27-optimized.webp" class="w-full sm:h-[500px] h-[400px]"></li>
-                        <li><img src="https://thehimalayanfarm.in/storage/313/conversions/23-optimized.webp" class="w-full sm:h-[500px] h-[400px]"></li>
-                        <li><img src="https://thehimalayanfarm.in/storage/315/conversions/32-optimized.webp" class="w-full sm:h-[500px] h-[400px]"></li>
-                        <li><img src="https://thehimalayanfarm.in/storage/312/IMG_20220910_100942.jpg" class="w-full sm:h-[500px] h-[400px]"></li>
-                        <li><img src="https://thehimalayanfarm.in/storage/311/IMG_20220910_095850.jpg" class="w-full sm:h-[500px] h-[400px]"></li>
-                        <li>   <video class="w-full sm:h-[500px] h-[400px] videoSection" controls>
-                                <source class="videoSrc " src="https://thehimalayanfarm.in/storage/videos/1/augmxv6Ow5OAxuGaai6IZvcxkXViyPgb7QapdLvo.mp4" type="video/mp4">
-                            </video></li>
-                    </ul>
-                </div>
+                <MobileProductImages :images="@js($images)"/>
 
             </div>
             <div class="lg:w-[50%] p-4">
@@ -26,32 +15,53 @@
                         <span class="font-bold text-[22px]">
                         {{ $product->name }}({{ $variation->name }})
                         </span>
-                    <span class="text-[20px] text-black font-normal ">₹{{ $variation->discountedPrice }} <span class="line-through font-semibold text-[#c4cfd8] ml-2">₹ {{ $variation->price }}</span></span>
+                    <span class="text-[20px] text-black font-normal ">₹{{ $variation->discountedPrice }} <span
+                            class="line-through font-semibold text-[#c4cfd8] ml-2">₹ {{ $variation->price }}</span></span>
 
                     <div class="w-full text-justify mt-8">
                               <span class="text-[#7b8e9d] text-[14px] font-normal leading-8 text-justify mt-6">
                                     {{ $product->summary }}
                         </span>
                     </div>
-
-                    <div class="w-full">
-                        <img src="{{ asset('storage/'.$product->summary_image) }}" alt="{{ $product->name }}">
-                    </div>
+                    @if($product->summary_image)
+                        <div class="w-full">
+                            <img src="{{ asset('storage/'.$product->summary_image) }}" alt="{{ $product->name }}">
+                        </div>
+                    @endif
                     <div class="mt-4 flex gap-4">
 
                         @foreach($product->variations as $var)
-                            <Link class="bg-{{ $var->slug  === $variation->slug ? '[#008a74] text-white' : '[#f5f5ff]'}} px-4 py-2 rounded-full text-sm"  href="{{ route('store.product',['product'=>$product->slug,'variation'=>$var->slug]) }}" >{{ $var->name }}</Link>
+                            <Link preserveScroll
+                                  class="bg-{{ $var->slug  === $variation->slug ? '[#008a74] text-white' : '[#f5f5ff]'}} px-4 py-2 rounded-full text-sm"
+                                  href="{{ route('store.product',['product'=>$product->slug,'variation'=>$var->slug]) }}">{{ $var->name }}</Link>
                         @endforeach
                     </div>
 
                     <div class="w-full flex mt-4 ">
-                        <button class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold"><i class="fa fa-minus"></i></button>
-                        <button class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold">1</button>
-                        <button class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold"><i class="fa fa-plus"></i></button>
-                        <button class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-normal"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
-                        <button class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-normal"><i class="fa fa-heart"></i> Wishlist</button>
+                        <x-splade-form method="POST" action="{{ route('store.cart.add',['product'=>$product,'variation'=>$variation]) }}" class="flex"
+                                       :default="['quantity'=>1]" @success="$splade.emit('added-to-cart')">
+                            <span @click="`${form.quantity > 1 ? form.quantity-- : 1}`"
+                                class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold">
+                                <i class="fa fa-minus"></i></span>
+                            <x-splade-input name="quantity" type="number" min="1"
+                                            class="hidden w-1/5 bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold">
+                            </x-splade-input>
+                            <span
+                                class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold"
+                                v-text="`${form.quantity}`"></span>
+                            <span @click="`${form.quantity++}`"
+                                class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-bold">
+                                <i class="fa fa-plus"></i></span>
+                            <x-splade-submit :spinner="true"
+                                class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-normal">
+                                <i class="fa fa-shopping-cart"></i> Add To Cart
+                            </x-splade-submit>
+                            <x-splade-button
+                                class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-normal">
+                                <i class="fa fa-heart"></i> Wishlist
+                            </x-splade-button>
+                        </x-splade-form>
                     </div>
-
 
 
                 </div>
@@ -71,15 +81,12 @@
         </div>
 
         <div class="w-full mt-3 hidden md:inline">
-            <span>{{ $product->description }}</span>
+            <span>{!! $product->description !!}</span>
         </div>
 
         <div class="w-full mt-3 md:hidden">
-            <span>{{ $product->mobile_description }}</span>
+            <span>{!! $product->mobile_description !!}</span>
         </div>
-
-
-
 
 
     </div>
@@ -87,61 +94,55 @@
         <div class="w-full border-b-[1px] border-b-gray-200">
             <div class="w-max py-4 border-b-[2px] border-b-red-500">
                          <span class="text-black font-semibold text-md">
-                             Reviews(0)
+                             Reviews({{ $product->reviews->where('active',1)->count() }})
                          </span>
             </div>
         </div>
-
-        <div class="w-full mt-3">
-            <span>No reviews yet</span>
-        </div>
         <div class="w-full border-[1px] border-gray-300 flex flex-col ">
-            <div class="flex flex-col">
-                <div class="w-max flex p-4 gap-4">
-                    <div class="h-32 w-32 rounded-full">
-                        <img class="h-full w-full object-cover rounded-full" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="">
-                    </div>
-                    <div class="flex flex-col gap-2 my-auto">
+            <x-splade-rehydrate on="review-added">
+                @forelse($product->reviews->where('active',1) as $review)
+                    <div class="flex flex-col">
+                        <div class="w-max flex p-4 gap-4">
+                            <div class="h-32 w-32 rounded-full">
+                                <img class="h-full w-full object-cover rounded-full"
+                                     src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                                     alt="">
+                            </div>
+                            <div class="flex flex-col gap-2 my-auto">
                     <span>
-                        <i class="fa fa-star text-yellow-500"></i>
-                        <i class="fa fa-star text-yellow-500"></i>
-                        <i class="fa fa-star text-yellow-500"></i>
-                        <i class="fa fa-star text-yellow-500"></i>
+                        @for($i=0;$i<$review->rating;$i++)
+                            <i class="fa fa-star text-yellow-500"></i>
+                        @endfor
                     </span>
-                        <span class="text-md font-semibold text-black ">User Name</span>
-                        <span class="text-xs font-thin text-gray-400 ">April 1, 2021</span>
-                    </div>
-                </div>
-                <div class="p-4">
-                      <span class="text-[#7b8e9d] text-[14px] font-normal leading-8 text-justify mt-6">
-                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dolorem ex incidunt inventore perferendis rem sint. Accusamus, animi autem ducimus magnam odio recusandae. A ab aliquam animi delectus dolorem dolores illo in laborum nulla quasi quia quibusdam sapiente sint soluta totam vel, velit voluptatum. Aperiam at dolores ex quis.
+                                <span class="text-md font-semibold text-black ">{{ $review->user->name }}</span>
+                                <span
+                                    class="text-xs font-thin text-gray-400 ">{{ \Carbon\Carbon::parse($review->created_at)->format('M d, Y') }}</span>
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            @if($review->images)
+                                <div class="flex w-full">
+                                    @foreach($review->images as $reviewImage)
+                                        <img class="w-[20%]" src="{{ asset('storage/'.$reviewImage) }}" alt="">
+                                    @endforeach
+                                </div>
+                            @endif
+                            @if($review->review)
+                                <span class="text-[#7b8e9d] text-[14px] font-normal leading-8 text-justify mt-6">
+                            {{ $review->review }}
                         </span>
-                </div>
-            </div>
+                            @endif
+                        </div>
+                    </div>
 
-            <div class="flex flex-col">
-                <div class="w-max flex p-4 gap-4">
-                    <div class="h-32 w-32 rounded-full">
-                        <img class="h-full w-full object-cover rounded-full" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="">
+                @empty
+                    <div class="w-full mt-3">
+                        <span>No reviews yet</span>
                     </div>
-                    <div class="flex flex-col gap-2 my-auto">
-                    <span>
-                        <i class="fa fa-star text-yellow-500"></i>
-                        <i class="fa fa-star text-yellow-500"></i>
-                        <i class="fa fa-star text-yellow-500"></i>
-                        <i class="fa fa-star text-yellow-500"></i>
-                    </span>
-                        <span class="text-md font-semibold text-black ">User Name</span>
-                        <span class="text-xs font-thin text-gray-400 ">April 1, 2021</span>
-                    </div>
-                </div>
-                <div class="p-4">
-                      <span class="text-[#7b8e9d] text-[14px] font-normal leading-8 text-justify mt-6">
-                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquid asperiores dolorem ex incidunt inventore perferendis rem sint. Accusamus, animi autem ducimus magnam odio recusandae. A ab aliquam animi delectus dolorem dolores illo in laborum nulla quasi quia quibusdam sapiente sint soluta totam vel, velit voluptatum. Aperiam at dolores ex quis.
-                        </span>
-                </div>
-            </div>
+                @endforelse
+            </x-splade-rehydrate>
         </div>
+
 
     </div>
     <div class="mt-4 px-4">
@@ -149,31 +150,43 @@
             <div class="w-full py-4 bg-[#f7f7f7] flex px-2">
                 <span>Review Product</span>
             </div>
-            {{--            <div class="w-full p-6 ">--}}
-            {{--                 <div class="w-full p-4 rounded-md bg-red-100">--}}
-            {{--                        <span class="font-normal text-md">You need to Login to review this product</span>--}}
-            {{--                 </div>--}}
-            {{--            </div>--}}
-            <div class="w-full p-6">
-                <div class="flex flex-col mb-2">
-                    <label for="amount" class="text-gray-400 text-sm ">Review Text:</label>
-                    <textarea class="bg-white border-[1px] border-gray-400 rounded-md placeholder:text-gray-400 mt-2 focus:ring-0 focus:outline-none " rows="5"  placeholder="Write your review"></textarea>
+            @guest
+                <div class="w-full p-6 ">
+                    <div class="w-full p-4 rounded-md bg-red-100">
+                        <span class="font-normal text-md">You need to Login to review this product</span>
+                    </div>
                 </div>
-                <div class="flex flex-col mb-2">
-                    <label for="amount" class="text-gray-400 text-sm ">Upload Images:</label>
-                    <input class="form-control bg-white border-[1px] border-gray-400 rounded-md placeholder:text-gray-400 mt-2 p-2 focus:ring-0 focus:outline-none " type="file" placeholder="No file Chosen">
-                </div>
-                <div class="w-full py-4 flex ">
-                    <button class="bg-[#008973] text-white py-3 px-6">Submit Review</button>
-                </div>
-            </div>
+            @endguest
+            @auth
+                <div class="w-full p-6">
+                    <x-splade-form preserve-scroll @success="$splade.emit('review-added')"
+                                   action="{{ route('store.product.create-review', $product) }}" method="POST"
+                                   enctype="multipart/form-data">
+                        <x-splade-textarea name="review" label="Review" placeholder="Your Review"
+                                           required></x-splade-textarea>
+                        @php
+                            $ratingOptions = [
+                                1=> 'Very Bad',
+                                2=> 'Bad',
+                                3=> 'Average',
+                                4=> 'Good',
+                                5=> 'Excellent',
+                            ];
+                        @endphp
+                        <x-splade-radios name="rating" label="Rating" :options="$ratingOptions" inline required/>
 
+                        <x-splade-file name="images[]" multiple label="Images" placeholder="Upload Images" filepond
+                                       preview
+                                       max-size="1MB" :accept="['image/png','image/jpg','image/jpeg']"></x-splade-file>
+                        <x-splade-submit label="Submit Review" class="mt-2 bg-[#008973] text-white py-3 px-6"/>
+                    </x-splade-form>
+                </div>
+            @endauth
 
         </div>
 
 
     </div>
-
 
 
     {{--    heading--}}

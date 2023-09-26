@@ -48,8 +48,12 @@
                 @endguest
                 <li class="m-auto"><a href="{{route('home')}}"><i class="fa fa-search"></i></a></li>
                 @auth
-                    <li class="m-auto"><Link href="{{route('cart')}}" slideover><i class="fa fa-shopping-cart"></i></Link></li>
-                    <li class="m-auto"><a href="{{route('wishlist')}}" modal><i class="fa-regular fa-heart"></i></a></li>
+                    <li class="m-auto">
+                        <Link href="{{route('cart')}}" slideover>
+                        <i class="fa fa-shopping-cart {{ auth()->cart->cartItems->count() ? 'text-[#008973]' : '' }}"></i></Link>
+                    </li>
+                    <li class="m-auto"><a href="{{route('wishlist')}}" modal><i class="fa-regular fa-heart"></i></a>
+                    </li>
                 @endauth
                 <li class="m-auto lg:block hidden"><a href="{{route('home')}}">
                         <button

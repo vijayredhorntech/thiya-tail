@@ -10,7 +10,8 @@ return new class extends Migration {
         Schema::create('product_media', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
-            $table->foreignId('variation_id')->constrained('product_variations')->nullable();
+            $table->unsignedBigInteger('variation_id')->nullable();
+            $table->foreign('variation_id')->on('product_variations')->references('id')->cascadeOnDelete();
             $table->string('name');
             $table->enum('type',['image','video']);
             $table->string('location');

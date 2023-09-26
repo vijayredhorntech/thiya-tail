@@ -36,8 +36,6 @@
         <br>
         Summary: {{ $product ->summary }}
         <br>
-        Description: {{ $product ->description }}
-        <br>
 
         <div>
             Product Variations

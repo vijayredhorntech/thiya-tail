@@ -17,10 +17,18 @@ createApp({
 })
     .use(SpladePlugin, {
         "max_keep_alive": 10,
-        "transform_anchors": false,
-        "progress_bar": true,
+        "transform_anchors": true,
+        'progress_bar': {
+            delay: 250,
+            color: "#000000",
+            css: true,
+            spinner: false,
+        },
         'components': {
             'ProductImages': defineAsyncComponent(() => import('./components/ProductImages.vue')),
+            'MobileProductImages': defineAsyncComponent(() => import('./components/MobileProductImages.vue')),
+            'HomeSlider': defineAsyncComponent(() => import('./components/HomeSlider.vue')),
+            'WelcomeMessage': defineAsyncComponent(() => import('./components/WelcomeMessage.vue')),
         }
     })
     .mount(el);
