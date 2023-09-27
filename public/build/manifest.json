@@ -1,24 +1,36 @@
 {
-  "_choices-5f63de79.js": {
-    "file": "assets/choices-5f63de79.js",
+  "__plugin-vue_export-helper-c27b6911.js": {
+    "file": "assets/_plugin-vue_export-helper-c27b6911.js"
+  },
+  "_choices-c3d1cfee.js": {
+    "file": "assets/choices-c3d1cfee.js",
     "imports": [
       "resources/js/app.js"
     ],
     "isDynamicEntry": true
   },
-  "_jodit.min-6911aa18.js": {
-    "file": "assets/jodit.min-6911aa18.js",
+  "_jodit.min-4db62d1b.js": {
+    "file": "assets/jodit.min-4db62d1b.js",
     "imports": [
       "resources/js/app.js"
     ],
     "isDynamicEntry": true
   },
-  "_nprogress-6650ea06.js": {
-    "file": "assets/nprogress-6650ea06.js",
+  "_nprogress-79d2f351.js": {
+    "file": "assets/nprogress-79d2f351.js",
     "imports": [
       "resources/js/app.js"
     ],
     "isDynamicEntry": true
+  },
+  "_splide.min-323b7bfb.js": {
+    "css": [
+      "assets/splide-f59584d9.css"
+    ],
+    "file": "assets/splide.min-323b7bfb.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400-003f1154.ttf",
@@ -98,7 +110,7 @@
     "src": "node_modules/flatpickr/dist/esm/index.js"
   },
   "resources/js/app.css": {
-    "file": "assets/app-14ee2cdd.css",
+    "file": "assets/app-7e316546.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
@@ -113,7 +125,7 @@
       "assets/fa-v4compatibility-455e8e72.ttf"
     ],
     "css": [
-      "assets/app-14ee2cdd.css"
+      "assets/app-7e316546.css"
     ],
     "dynamicImports": [
       "node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.esm.js",
@@ -123,16 +135,76 @@
       "node_modules/filepond-plugin-image-validate-size/dist/filepond-plugin-image-validate-size.esm.js",
       "node_modules/filepond/dist/filepond.esm.js",
       "node_modules/flatpickr/dist/esm/index.js",
-      "_jodit.min-6911aa18.js",
-      "_choices-5f63de79.js",
+      "_jodit.min-4db62d1b.js",
+      "_choices-c3d1cfee.js",
       "node_modules/autosize/dist/autosize.esm.js",
       "node_modules/autosize/dist/autosize.esm.js",
       "node_modules/autosize/dist/autosize.esm.js",
-      "_nprogress-6650ea06.js",
-      "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-6b34f14b.js"
+      "_nprogress-79d2f351.js",
+      "node_modules/@protonemedia/laravel-splade/dist/CompilerErrorMessages-6b34f14b.js",
+      "resources/js/components/ProductImages.vue",
+      "resources/js/components/MobileProductImages.vue",
+      "resources/js/components/HomeSlider.vue",
+      "resources/js/components/WelcomeMessage.vue"
     ],
-    "file": "assets/app-d769d356.js",
+    "file": "assets/app-9dc9f741.js",
     "isEntry": true,
     "src": "resources/js/app.js"
+  },
+  "resources/js/components/HomeSlider.vue": {
+    "file": "assets/HomeSlider-0dd0035b.js",
+    "imports": [
+      "_splide.min-323b7bfb.js",
+      "__plugin-vue_export-helper-c27b6911.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/HomeSlider.vue"
+  },
+  "resources/js/components/MobileProductImages.vue": {
+    "file": "assets/MobileProductImages-d162ccba.js",
+    "imports": [
+      "_splide.min-323b7bfb.js",
+      "__plugin-vue_export-helper-c27b6911.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/MobileProductImages.vue"
+  },
+  "resources/js/components/ProductImages.css": {
+    "file": "assets/ProductImages-e3b0c442.css",
+    "src": "resources/js/components/WelcomeMessage.css"
+  },
+  "resources/js/components/ProductImages.vue": {
+    "css": [
+      "assets/ProductImages-e3b0c442.css"
+    ],
+    "file": "assets/ProductImages-dcc97e7b.js",
+    "imports": [
+      "__plugin-vue_export-helper-c27b6911.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/ProductImages.vue"
+  },
+  "resources/js/components/WelcomeMessage.css": {
+    "file": "assets/ProductImages-e3b0c442.css",
+    "src": "resources/js/components/WelcomeMessage.css"
+  },
+  "resources/js/components/WelcomeMessage.vue": {
+    "css": [
+      "assets/ProductImages-e3b0c442.css"
+    ],
+    "file": "assets/WelcomeMessage-bc240c30.js",
+    "imports": [
+      "__plugin-vue_export-helper-c27b6911.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/components/WelcomeMessage.vue"
+  },
+  "splide.css": {
+    "file": "assets/splide-f59584d9.css",
+    "src": "splide.css"
   }
 }

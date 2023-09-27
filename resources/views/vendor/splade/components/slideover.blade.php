@@ -12,7 +12,8 @@
                 'blur-sm': !modal.onTopOfStack,
                 'sm:max-w-sm': modal.maxWidth == 'sm',
                 'sm:max-w-md': modal.maxWidth == 'md',
-                'sm:max-w-md md:max-w-lg': modal.maxWidth == 'lg',
+                'sm:max-w-[70%]': modal.maxWidth == 'lg',
+{{--                'sm:max-w-[70%] md:max-w-lg': modal.maxWidth == 'lg',--}}
                 'sm:max-w-md md:max-w-xl': modal.maxWidth == 'xl',
                 'sm:max-w-md md:max-w-xl lg:max-w-2xl': modal.maxWidth == '2xl',
                 'sm:max-w-md md:max-w-xl lg:max-w-3xl': modal.maxWidth == '3xl',

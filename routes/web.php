@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\LanguageController;
@@ -11,11 +12,14 @@ use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\TrafficsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HomeSliderController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductVariationController;
+use App\Http\Controllers\RazorpayController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\WishlistController;
 use App\Models\Language;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -68,6 +72,20 @@ Route::middleware(['splade'])->group(function () {
 //        ]);
 //    });
 
+    Route::prefix('user')->name('user.')->group(function () {
+        Route::prefix('address')->name('address.')->group(function () {
+            // crud
+            Route::get('/', [AddressController::class, 'index'])->name('index');
+            Route::get('/create', [AddressController::class, 'create'])->name('create');
+            Route::post('/store', [AddressController::class, 'store'])->name('store');
+            Route::get('/{address}/edit', [AddressController::class, 'edit'])->name('edit');
+            Route::put('/{address}/update', [AddressController::class, 'update'])->name('update');
+            Route::get('/{address}/delete', [AddressController::class, 'delete'])->name('delete');
+
+        });
+    });
+
+
     Route::prefix('store')->name('store.')->group(function () {
         Route::get('/{category:slug?}', [StoreController::class, 'index'])->name('home');
         Route::get('/product/{product:slug}/{variation:slug?}', [StoreController::class, 'product'])->name('product');
@@ -77,10 +95,24 @@ Route::middleware(['splade'])->group(function () {
         Route::prefix('cart')->middleware(['auth:sanctum'])->name('cart.')->group(function () {
             Route::get('/', [CartController::class, 'index'])->name('index');
             Route::post('/add/{product:slug}/{variation:slug}', [CartController::class, 'store'])->name('add');
-            Route::post('/update', [CartController::class, 'update'])->name('update');
+            Route::post('/update/{cartItem}', [CartController::class, 'update'])->name('update');
             Route::post('/remove', [CartController::class, 'remove'])->name('remove');
+            Route::get('/checkout', [CartController::class, 'checkout'])->name('checkout');
+            Route::get('/set-delivery-address/{address}', [CartController::class, 'setDeliveryAddress'])->name('set-delivery-address');
+            Route::post('/payment', [PaymentController::class, 'payment'])->name('payment');
+            Route::post('/payment-response', [PaymentController::class, 'paymentResponse'])->name('payment.response');
+        });
+
+        Route::prefix('wishlist')->middleware(['auth:sanctum'])->name('wishlist.')->group(function () {
+            Route::get('/add/{product:slug}/{variation:slug}', [WishlistController::class, 'store'])->name('add');
+            Route::post('/remove/{wishlistItem}', [WishlistController::class, 'remove'])->name('remove');
+            Route::post('/move-to-cart/{wishlistItem}', [WishlistController::class, 'move'])->name('move-to-cart');
+            Route::post('/empty', [WishlistController::class, 'empty'])->name('empty');
+            Route::post('/move-all-to-cart', [WishlistController::class, 'moveAllToCart'])->name('move-all-to-cart');
         });
     });
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist')->middleware('auth:sanctum');
+
 
     Route::prefix('dashboard')->middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->name('dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'index'])->name('index');
@@ -157,9 +189,6 @@ Route::middleware(['splade'])->group(function () {
     Route::get('/cart', function () {
         return view('cart');
     })->name('cart');
-    Route::get('/wishlist', function () {
-        return view('wishlist');
-    })->name('wishlist');
     Route::get('/story', function () {
         return view('story');
     })->name('story');

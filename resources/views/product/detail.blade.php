@@ -56,10 +56,11 @@
                                 class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-normal">
                                 <i class="fa fa-shopping-cart"></i> Add To Cart
                             </x-splade-submit>
-                            <x-splade-button
+                            <Link preserveScroll @success="$splade.emit('added-to-wishlist')"
+                                  href="{{ route('store.wishlist.add',['product'=>$product,'variation'=>$variation]) }}"
                                 class="bg-[#efefef] text-[#008973] py-6 xl:px-6 lg:px-4 md:px-4 sm:px-6 px-2 hover:scale-110 font-normal">
                                 <i class="fa fa-heart"></i> Wishlist
-                            </x-splade-button>
+                            </Link>
                         </x-splade-form>
                     </div>
 
@@ -99,7 +100,6 @@
             </div>
         </div>
         <div class="w-full border-[1px] border-gray-300 flex flex-col ">
-            <x-splade-rehydrate on="review-added">
                 @forelse($product->reviews->where('active',1) as $review)
                     <div class="flex flex-col">
                         <div class="w-max flex p-4 gap-4">
@@ -140,7 +140,6 @@
                         <span>No reviews yet</span>
                     </div>
                 @endforelse
-            </x-splade-rehydrate>
         </div>
 
 
@@ -159,7 +158,7 @@
             @endguest
             @auth
                 <div class="w-full p-6">
-                    <x-splade-form preserve-scroll @success="$splade.emit('review-added')"
+                    <x-splade-form
                                    action="{{ route('store.product.create-review', $product) }}" method="POST"
                                    enctype="multipart/form-data">
                         <x-splade-textarea name="review" label="Review" placeholder="Your Review"

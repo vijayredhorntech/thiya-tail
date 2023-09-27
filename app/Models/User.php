@@ -61,6 +61,20 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
+    // on create, create cart
+    protected static function booted()
+    {
+        static::creating(function ($user) {
+            $user->cart()->create([
+                'amount' => 0
+            ]);
+        });
+
+        static::deleting(function ($user) {
+            $user->cart()->delete();
+        });
+    }
+
     public function traffics()
     {
         return $this->hasMany(RateLimit::class);
@@ -79,5 +93,15 @@ class User extends Authenticatable
     public function cart()
     {
         return $this->HasOne(Cart::class);
+    }
+
+    public function wishlist()
+    {
+        return $this->HasMany(Wishlist::class);
+    }
+
+    public function addresses()
+    {
+        return $this->HasMany(Address::class);
     }
 }

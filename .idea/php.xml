@@ -149,6 +149,9 @@
       <path value="$PROJECT_DIR$/vendor/spatie/laravel-sluggable" />
       <path value="$PROJECT_DIR$/vendor/tonysm/globalid-laravel" />
       <path value="$PROJECT_DIR$/vendor/tonysm/rich-text-laravel" />
+      <path value="$PROJECT_DIR$/vendor/rmccue/requests" />
+      <path value="$PROJECT_DIR$/vendor/razorpay/razorpay" />
+      <path value="$PROJECT_DIR$/vendor/ixudra/curl" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

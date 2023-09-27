@@ -1,4 +1,4 @@
-<header class="sticky top-0 z-50">
+<header class="sticky top-0 z-20">
     <div class="swiffy-slider bg-[#018472] text-white h-[50px] font-semibold flex justify-center slider-nav-autoplay ">
         <ul class="slider-container lg:text-[15px] sm:text-[13px] text-[12px]">
             <li class=" flex justify-center">
@@ -48,12 +48,33 @@
                 @endguest
                 <li class="m-auto"><a href="{{route('home')}}"><i class="fa fa-search"></i></a></li>
                 @auth
-                    <li class="m-auto">
-                        <Link href="{{route('cart')}}" slideover>
-                        <i class="fa fa-shopping-cart {{ auth()->cart->cartItems->count() ? 'text-[#008973]' : '' }}"></i></Link>
-                    </li>
-                    <li class="m-auto"><a href="{{route('wishlist')}}" modal><i class="fa-regular fa-heart"></i></a>
-                    </li>
+                    <x-splade-rehydrate :on="['added-to-cart','added-to-wishlist','moved-to-cart']">
+                        @php
+                            $cartCount = auth()->user()->cart->items->count();
+                            $wishlistCount = auth()->user()->wishlist->count();
+                        @endphp
+                        <li class="m-auto relative">
+                            @if($cartCount > 0)
+                                <div
+                                    class="absolute -top-3 -right-3 bg-[#008973] rounded-full h-[18px] w-[18px] flex justify-center">
+                                    <span class="text-[8px] my-auto text-white">{{ $cartCount }}</span>
+                                </div>
+                            @endif
+                                <Link href="{{route('cart')}}" slideover>
+                                <i class="fa fa-shopping-cart {{ auth()->user()->cart->items->count() ? 'text-[#008973]' : '' }}"></i></Link>
+                        </li>
+                        <li class="m-auto relative">
+                            <Link href="{{route('wishlist')}}" slideover>
+                            @if($wishlistCount > 0)
+                                <div
+                                    class="absolute -top-3 -right-3 bg-[#008973] rounded-full h-[18px] w-[18px] flex justify-center">
+                                    <span class="text-[8px] my-auto text-white">{{ $wishlistCount }}</span>
+                                </div>
+                            @endif
+                            <i
+                                class="fa fa-heart {{ auth()->user()->wishlist->count() ? 'text-[#008973]' : '' }}"></i></Link>
+                        </li>
+                    </x-splade-rehydrate>
                 @endauth
                 <li class="m-auto lg:block hidden"><a href="{{route('home')}}">
                         <button

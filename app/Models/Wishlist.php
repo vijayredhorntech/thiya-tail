@@ -4,20 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CartItems extends Model
+class Wishlist extends Model
 {
     protected $fillable = [
-        'cart_id',
+        'user_id',
         'product_id',
         'variation_id',
-        'quantity',
-        'amount',
     ];
 
-    public function cart()
+    protected static function booted()
     {
-        return $this->belongsTo(Cart::class);
+        static::addGlobalScope('user_id', function ($query) {
+            $query->where('user_id', auth()->id());
+        });
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

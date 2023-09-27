@@ -160,6 +160,9 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/tonysm/globalid-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/tonysm/rich-text-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/storage/debugbar" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/rmccue/requests" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/razorpay/razorpay" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ixudra/curl" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
